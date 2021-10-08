@@ -1,0 +1,105 @@
+/* 아스키코드 문자열이 아닐 경우 UTF-8로 인코딩 셋 지정 */
+@charset "UTF-8";
+
+body, h1, /* */
+h2, p, ul, li {
+  margin: 0;
+  padding: 0;
+}
+
+.course-list {
+  position: relative;
+  display: grid;
+  max-width: 970px;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin: auto;
+}
+
+.thumbnail-container {
+  position: relative;
+  padding-top: 60%;
+  overflow: hidden;
+}
+
+.course-thumbnail {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+#courseList.loading {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+#courseList.loading::after {
+  content: '로딩중...🚀';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  animation: updown 2s ease infinite;
+}
+
+@keyframes updown {
+  0% {
+    transform: translateY(5px);
+  }
+
+  50% {
+    transform: translateY(0);
+  }
+
+  100% {
+    transform: translateY(5px);
+  }
+}
+
+.course-item {
+  list-style: none;
+}
+
+#observer {
+  position: absolute;
+  width: 100%;
+  height: 100px;
+  z-index: -1;
+  background-color: transparent;
+}
+
+#observer.loading::after {
+  content: '';
+  position: absolute;
+  top: calc(50% - 1.5rem);
+  left: calc(50% - 1.5rem);
+
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 50%;
+  border: 3px solid darkgray;
+  border-top: 3px solid gainsboro;
+  animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.course-title {
+  font-size: 1.25rem;
+}
