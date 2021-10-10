@@ -1,6 +1,5 @@
 import courses from './data/courses.js';
 
-const observer = document.querySelector('#observer');
 const courseList = document.querySelector('#courseList');
 
 const showCourses = () => {
@@ -24,24 +23,4 @@ const createCourse = (course) => {
   return li;
 };
 
-let page = 0;
-const showMore = async () => {
-  const target = page ? observer : courseList;
-  target.classList.add('loading');
-  await delayTime(showCourses);
-  page++;
-  target.classList.remove('loading');
-};
-
-const io = new IntersectionObserver(([{ isIntersecting }]) => {
-  if (isIntersecting) showMore();
-});
-
-io.observe(observer);
-
-const randomTimer = (func) => (resolve) => {
-  const time = Math.floor(Math.random() * 5) * 1000;
-  setTimeout(() => resolve(func()), time);
-};
-
-const delayTime = (func) => new Promise(randomTimer(func));
+export default showCourses;
